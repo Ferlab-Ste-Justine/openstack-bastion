@@ -1,0 +1,18 @@
+#cloud-config
+write_files:
+  - path: /opt/id_rsa
+    owner: root:root
+    permissions: "0600"
+    content: |
+      ${indent(6, private_key)}
+  - path: /opt/id_rsa.pub
+    owner: root:root
+    permissions: "0600"
+    content: ${public_key}
+packages:
+  - python3-pip
+runcmd:
+  - mv /opt/id_rsa* /home/ubuntu/.ssh/
+  - chown ubuntu:ubuntu /home/ubuntu/.ssh/id_rsa
+  - chown ubuntu:ubuntu /home/ubuntu/.ssh/id_rsa.pub
+  - pip3 install ansible==2.9.9
