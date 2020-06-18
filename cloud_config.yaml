@@ -16,3 +16,4 @@ runcmd:
   - chown ubuntu:ubuntu /home/ubuntu/.ssh/id_rsa
   - chown ubuntu:ubuntu /home/ubuntu/.ssh/id_rsa.pub
   - pip3 install ansible==2.9.9
+  - pip3 install netaddr==0.7.19
