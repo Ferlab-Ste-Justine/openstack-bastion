@@ -14,11 +14,6 @@ variable "flavor_id" {
   type = string
 }
 
-variable "external_address" {
-  description = "External address of the bastion"
-  type = string
-}
-
 variable "external_keypair_name" {
   description = "Name of the external keypair that will be used to ssh to the bastion"
   type = string

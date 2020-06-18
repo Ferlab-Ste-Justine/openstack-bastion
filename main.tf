@@ -25,8 +25,3 @@ resource "openstack_compute_instance_v2" "bastion" {
     name = var.internal_network_name
   }
 }
-
-resource "openstack_compute_floatingip_associate_v2" "bastion_ip" {
-  floating_ip = var.external_address
-  instance_id = openstack_compute_instance_v2.bastion.id
-}
