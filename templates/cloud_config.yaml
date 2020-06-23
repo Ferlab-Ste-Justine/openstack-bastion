@@ -11,9 +11,10 @@ write_files:
     content: ${public_key}
 packages:
   - python3-pip
+  - jq
 runcmd:
-  - mv /opt/id_rsa* /home/ubuntu/.ssh/
-  - chown ubuntu:ubuntu /home/ubuntu/.ssh/id_rsa
-  - chown ubuntu:ubuntu /home/ubuntu/.ssh/id_rsa.pub
+  - mv /opt/id_rsa* /home/${ssh_user}/.ssh/
+  - chown ${ssh_user}:${ssh_user} /home/${ssh_user}/.ssh/id_rsa
+  - chown ${ssh_user}:${ssh_user} /home/${ssh_user}/.ssh/id_rsa.pub
   - pip3 install ansible==2.9.9
   - pip3 install netaddr==0.7.19

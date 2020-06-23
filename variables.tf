@@ -39,3 +39,9 @@ variable "security_groups" {
   type = list(string)
   default = ["default"]
 }
+
+variable "ssh_user" {
+  description = "User that will be used to ssh into the bastion"
+  type = string
+  default = "ubuntu"
+}
