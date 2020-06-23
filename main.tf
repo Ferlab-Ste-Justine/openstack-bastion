@@ -15,7 +15,7 @@ data "template_cloudinit_config" "bastion_config" {
 }
 
 resource "openstack_compute_instance_v2" "bastion" {
-  name            = var.namespace == "" ? "bastion" : "bastion_${var.namespace}"
+  name            = var.namespace == "" ? "bastion" : "bastion-${var.namespace}"
   image_id        = var.image_id
   flavor_id       = var.flavor_id
   key_pair        = var.external_keypair_name
