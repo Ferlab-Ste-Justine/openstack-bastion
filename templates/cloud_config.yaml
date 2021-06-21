@@ -9,6 +9,18 @@ write_files:
     owner: root:root
     permissions: "0600"
     content: ${public_key}
+  - path: /opt/requirements.txt
+    owner: root:root
+    permissions: "0444"
+    content: |
+      ansible==2.9.20
+      cryptography==2.8
+      jinja2==2.11.3
+      netaddr==0.7.19
+      pbr==5.4.4
+      jmespath==0.9.5
+      ruamel.yaml==0.16.10
+      MarkupSafe==1.1.1
 packages:
   - python3-pip
   - jq
@@ -16,5 +28,4 @@ runcmd:
   - mv /opt/id_rsa* /home/${ssh_user}/.ssh/
   - chown ${ssh_user}:${ssh_user} /home/${ssh_user}/.ssh/id_rsa
   - chown ${ssh_user}:${ssh_user} /home/${ssh_user}/.ssh/id_rsa.pub
-  - pip3 install ansible==2.9.9
-  - pip3 install netaddr==0.7.19
+  - pip3 install -r /opt/requirements.txt
