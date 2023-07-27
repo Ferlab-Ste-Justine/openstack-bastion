@@ -1,17 +1,25 @@
-variable "namespace" {
-  description = "Namespace to isolate all resources created in the module"
+variable "name" {
+  description = "Name of the vm"
   type = string
   default = ""
 }
 
-variable "image_id" {
-  description = "ID of the image the bastion will run on"
-  type = string
+variable "image_source" {
+  description = "Source of the vm's image"
+  type = object({
+    image_id = string
+    volume_id = string
+  })
 }
 
 variable "flavor_id" {
   description = "ID of the flavor the bastion will run on"
   type = string
+}
+
+variable "network_port" {
+  description = "Network port to assign to the node. Should be of type openstack_networking_port_v2"
+  type        = any
 }
 
 variable "external_keypair_name" {
@@ -32,12 +40,6 @@ variable "internal_public_key" {
 variable "internal_network_name" {
   description = "Name of the internal network the bastion will sit in front of"
   type = string
-}
-
-variable "security_groups" {
-  description = "Security groups of the bastion"
-  type = list(string)
-  default = ["default"]
 }
 
 variable "ssh_user" {
