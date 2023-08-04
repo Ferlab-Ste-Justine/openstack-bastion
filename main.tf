@@ -9,12 +9,12 @@ locals {
 }
 
 data "template_cloudinit_config" "bastion_config" {
-  gzip = true
+  gzip          = true
   base64_encode = true
   part {
     content_type = "text/cloud-config"
     content = templatefile(
-      "${path.module}/templates/cloud_config.yaml", 
+      "${path.module}/templates/cloud_config.yaml",
       {
         public_key  = var.internal_public_key,
         private_key = var.internal_private_key
@@ -25,11 +25,11 @@ data "template_cloudinit_config" "bastion_config" {
 }
 
 resource "openstack_compute_instance_v2" "bastion" {
-  name            = var.name
-  image_id        = var.image_source.image_id != "" ? var.image_source.image_id : null
+  name     = var.name
+  image_id = var.image_source.image_id != "" ? var.image_source.image_id : null
 
-  flavor_id       = var.flavor_id
-  key_pair        = var.external_keypair_name
+  flavor_id = var.flavor_id
+  key_pair  = var.external_keypair_name
   user_data = data.template_cloudinit_config.bastion_config.rendered
 
   network {

@@ -4,7 +4,7 @@ This package is a terraform module to provision a bastion on Openstack
 
 The provisioned bastion is meant to customizable (within the confines of use cases encountered so far) and the module is conservative about the dependant resources it provisions, externalizing many of those concerns in order to provide greater flexibility.
 
-The bastion provision some packages as part of its cloud-init logic: ansible, netaddr, jq
+The bastion provision docker as part of its cloud-init logic.
 
 # Usage
 
